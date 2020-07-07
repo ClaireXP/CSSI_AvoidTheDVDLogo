@@ -35,14 +35,14 @@
 
 let dvdImage;
 let dvdImage1;
-// let CAT_PIX;
-// let cats;
+let CAT_PIX;
+let cats;
 
 //Variables that can be altered
 let scale = 5;
 let xCan = 600;
 let yCan = 600;
-// let count = 3;
+let count = 3;
 
 let x;
 let y;
@@ -57,14 +57,10 @@ let yVel1;
 let width = scale*20;
 let height = scale*15;
 
-let r = random(255);
-let g = random(255);
-let b = random(255);
-let r1 = random(255);
-let g1 = random(255);
-let b1 = random(255);
+let r,g,b;
+let r1,g1,b1;
 
-let list = [-8,-6,-5,-3,3,5,6,8];
+let l = [-8,-6,-5,-3,3,5,6,8];
 
 function setup(){
   // Code here runs only once
@@ -73,29 +69,29 @@ function setup(){
   // We only want to load the logo once.
   dvdImage = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
   dvdImage1 = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
-  //CAT_PIX = loadImage("https://www.wbcats.org/wp-content/uploads/2018/01/kittencover2-1.png");
+  CAT_PIX = loadImage("https://images.theconversation.com/files/301743/original/file-20191114-26207-lray93.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip");
   
   x = random(xCan-width);
   y = random(yCan-height);
   x1 = random(xCan-width);
   y1 = random(yCan-height);
-  yVel = random(list);
-  yVel1 = random(list*1.2);
-  xVel = random(list);
-  xVel1 = random(list*1.2);
+  yVel = random(l);
+  yVel1 = random(l*1.2);
+  xVel = random(l);
+  xVel1 = random(l*1.2);
   
   
-  // //Object-oriented attempt
-  // cats = [];
-  // for(let i=0; i<count; i++){
-  //   cats.push({
-  //     xPos: random(xCan-scale*10),
-  //     yPos: random(yCan-scale*10),
-  //     xDelt: random(list),
-  //     yDelt: random(list),
-  //     c: randCol(255,255,255),
-  //   });
-  // }
+  //Object-oriented attempt
+  cats = [];
+  for(let i=0; i<count; i++){
+    cats.push({
+      xPos: random(xCan-scale*20),
+      yPos: random(yCan-scale*20),
+      xDelt: random(l),
+      yDelt: random(l),
+      c: randCol(255,255,255),
+    });
+  }
 }
 
 
@@ -138,25 +134,24 @@ function draw(){
     b1 = random(255);
   }y1+=(yVel1*.5+yVel1*y1*.01);
   
-  
-//   //Object-Oriented Spawning
-//   for(const cat of cats){
-//     tint(cat.c);
-//     image(CAT_PIX, cat.xPos, cat.yPos, scale*10, scale*10);
+  //Object-Oriented Spawning
+  for(const cat of cats){
+    //Updates x
+    if(cat.xPos>=xCan-scale*20 || cat.xPos<=0){
+      cat.xDelt=-cat.xDelt;
+    }cat.xPos+=cat.xDelt;
 
-//     //Updates x
-//     if(cat.xPos>=xCan-scale*10 || cat.xPos<=0){
-//       cat.xDelt=-cat.xDelt;
-//     }cat.xPos+=cat.xDelt;
-
-//     //Updates y
-//     if((cat.yPos>=yCan-scale*10 && cat.yDelt>0) || (cat.yPos<=0 && cat.yDelt<0)){
-//       cat.yDelt=-cat.yDelt;
-//       cat.c = randCol();
-//     }cat.yPos+=(cat.yDelt*.5+cat.yDelt*cat.yPos*.01);
-//   }
+    //Updates y
+    if((cat.yPos>=yCan-scale*20 && cat.yDelt>0) || (cat.yPos<=0 && cat.yDelt<0)){
+      cat.yDelt=-cat.yDelt;
+      cat.c = randCol(255,255,255);
+    }cat.yPos+=(cat.yDelt*.5+cat.yDelt*cat.yPos*.01);
+    
+    tint(cat.c);
+    image(CAT_PIX, cat.xPos, cat.yPos, scale*20, scale*20);
+  }
 }
 
-// function randCol(red,green,blue) {
-//   return color(random(red), random(green), random(blue));
-// }
+function randCol(red,green,blue) {
+  return color(random(red), random(green), random(blue));
+}
