@@ -43,18 +43,19 @@ let yCan = 600;
 
 let x;
 let y;
-let xVel = random(-3,3);
-let yVel = -4;
+let xVel = 4;
+let yVel;
 
 let x1;
 let y1;
-let xVel1 = 2;
-let yVel1 = 3;
+let xVel1 = -8;
+let yVel1;
 
 let width = scale*20;
 let height = scale*15;
 
 let count = 3;
+var color = ""
 
 
 function setup() {
@@ -68,6 +69,10 @@ function setup() {
   y = random(yCan-height);
   x1 = random(xCan-width);
   y1 = random(yCan-height);
+  yVel = random([-8,-5,-3,3,5,8]);
+  yVel1 = random([-8,-5,-3,3,5,8]);
+  xVel = random([-9,-6,-2,2,6,9]);
+  xVel1 = random([-8,-5,-3,3,5,8]);
 }
 
 
@@ -87,14 +92,8 @@ function draw() {
   if((y>=yCan-height && yVel>0) || (y<=0 && yVel<0)){
     yVel=-yVel;
     // tint(random(255), random(255), random(255));
-  }
-  
-  if(yVel1>0){
-    y+=yVel+yVel*y*.00098;
-  }else{
-    y+=yVel-yVel*y*.00098;
-  }
-  
+  }y+=(yVel*.5+yVel*y*.0098);
+
   
   // Draw the 2nd logo at the new position.
   image(dvdImage1, x1, y1, width, height);
@@ -108,11 +107,5 @@ function draw() {
   if((y1>=yCan-height && yVel1>0) || (y1<=0 && yVel1<0)){
     yVel1=-yVel1;
     // tint(random(255), random(255), random(255));
-  }
-  
-  if(yVel1>0){
-    y1+=yVel1+yVel1*y1*.00098;
-  }else{
-    y1+=yVel1-yVel1*y1*.00098;
-  }
+  }y1+=(yVel1*.5+yVel1*y1*.0098);
 }
