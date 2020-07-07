@@ -45,7 +45,7 @@ let y;
 
 let xVel = 1;
 let yVel = 1;
-let yAcc = 9.8;
+let yAcc = 1;
 
 let width = scale*20;
 let height = scale*15;
@@ -82,7 +82,8 @@ function draw() {
   //Updates y
   if(y>=yCan-height){
     yVel=-1;
+    tint(random(255), random(255), random(255));
   }if(y<=0){
     yVel=1;
-  }y+=yVel*yAcc;
+  }y+=yVel;
 }
