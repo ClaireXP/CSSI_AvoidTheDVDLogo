@@ -34,16 +34,24 @@
  */
 
 let dvdImage;
+
+const scale = 5;
+const width = scale*20;
+const height = scale*15;
+
+var xCan = 400;
+var yCan = 300;
+
 var x;
 var y;
-var scale = .1;
+
 var xVel = 1;
 var yVel = 1;
 
 function setup() {
   // Code here runs only once
 
-  createCanvas(800, 600);
+  createCanvas(xCan, yCan);
   // We only want to load the logo once.
   dvdImage = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
   x = random(100);
@@ -55,17 +63,17 @@ function draw() {
   
   background(220);
   // Draw the logo at the new position.
-  image(dvdImage, x, y, 200, 150);
+  image(dvdImage, x, y, width, height);
   
   //Updates x
-  if(x>=600){
+  if(x>=xCan-width){
     xVel=-1;
   }if(x<=0){
     xVel=1;
   }x+=xVel;
   
   //Updates y
-  if(y>=600){
+  if(y>=yCan-height){
     yVel=-1;
   }if(y<=0){
     yVel=1;
