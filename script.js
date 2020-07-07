@@ -5,13 +5,22 @@
   \____|  \___/  /_/   \_\ |_____| |____/ 
                                                
 1) Make the DVD logo move
-2) Make it bounce
-3) Make it move diagonally
-4) 
+2) Bounce
+3) Move and bounce diagonally
+4) Respond to canvas size
+
+  ____    _____   ____    _____   _____    ____   _   _ 
+ / ___|  |_   _| |  _ \  | ____| |_   _|  / ___| | | | |
+ \___ \    | |   | |_) | |  _|     | |   | |     | |_| |
+  ___) |   | |   |  _ <  | |___    | |   | |___  |  _  |
+ |____/    |_|   |_| \_\ |_____|   |_|    \____| |_| |_|
+
+4) Change colors on bounce
+5) Multiple logos
+6) At different speeds
+7) Random colors and speeds!
+
 */
-
-
-
 
 
 

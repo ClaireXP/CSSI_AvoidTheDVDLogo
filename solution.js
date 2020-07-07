@@ -47,35 +47,65 @@
 
 
 
+/* global
+ *    background,
+ *    color,
+ *    createCanvas,
+ *    fill,
+ *    height,
+ *    image,
+ *    loadImage,
+ *    round,
+ *    square,
+ *    width,
+ */
 
-function setup() {
-  createCanvas(400, 400);
+let dvdImage, masterVelocity, logoWidth, logoHeight, x, y, xVelocity, yVelocity
+
+function setup(){
+  createCanvas(800, 600);
+  // Load the image once.
+  dvdImage = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
+
+  // --- Set up Controller Variables -- //
+  // Adjust to change speed
+  masterVelocity = 1;
+  // Adjust the width of the logo
+  logoWidth = 200;
+  // Adjust the height of the logo
+  logoHeight = 150;
+
+  // Set up starting values.
+  x = 50;
+  y = 50;
+  xVelocity = masterVelocity;
+  yVelocity = masterVelocity;
 }
 
-function draw() {
+function draw(){
   background(220);
 
-  // Brush settings
-  noFill()
-  strokeWeight(5)
+  // Check to make sure the image isn't at or over the edge of the screen for
+  // horizontal movement.
+  if (x > width - logoWidth) {
+    // If it's too far right, make velocity negative
+    xVelocity = -1 * masterVelocity;
+  } else if (x < 0) {
+    // if it's too far left, make the velocity positive
+    xVelocity = masterVelocity;
+  }
 
-  // Ring 1: Blue
-  stroke(10, 134, 205)
-  ellipse(50, 50, 50)
+  // Same check, but for vertical movement. Reverse it in either case.
+  if (y > height - logoHeight) {
+    yVelocity = -1 * masterVelocity;
+  } else if (y < 0) {
+    yVelocity = masterVelocity;
+  }
 
-  // Ring 2: Yellow
-  stroke(255, 214, 0)
-  ellipse(80, 80, 50)
+  // Move the shape by changing the values of x and y
+  x += xVelocity;
+  y += yVelocity;
 
-  // Ring 3: Black
-  stroke(0, 0, 0)
-  ellipse(110, 50, 50)
-
-  // Ring 4: Green
-  stroke(33, 176, 76)
-  ellipse(140, 80, 50)
-
-  // Ring 5:
-  stroke(234, 30, 35)
-  ellipse(170, 50, 50)
+  // Draw the logo at the new position.
+  image(dvdImage, x, y, logoWidth, logoHeight);
 }
