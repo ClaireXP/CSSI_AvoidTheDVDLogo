@@ -43,19 +43,29 @@ let yCan = 600;
 
 let x;
 let y;
-let xVel = 4;
+let xVel;
 let yVel;
 
 let x1;
 let y1;
-let xVel1 = -8;
+let xVel1;
 let yVel1;
+
+let x2;
+let y2;
+// let xVel1;
+// let yVel1;
 
 let width = scale*20;
 let height = scale*15;
 
 let count = 3;
-var color = ""
+var r = random(255);
+var g = random(255);
+var b = random(255);
+var r1 = random(255);
+var g1 = random(255);
+var b1 = random(255);
 
 
 function setup() {
@@ -71,8 +81,10 @@ function setup() {
   y1 = random(yCan-height);
   yVel = random([-8,-5,-3,3,5,8]);
   yVel1 = random([-8,-5,-3,3,5,8]);
+  // yVel2 = random([-5,-4,-1,1,4,5]);
   xVel = random([-9,-6,-2,2,6,9]);
   xVel1 = random([-8,-5,-3,3,5,8]);
+  // xVel2 = random([-5,-4,-1,1,4,5]);
 }
 
 
@@ -81,6 +93,7 @@ function draw() {
   background(220);
   
   // Draw the logo at the new position.
+  tint(r,g,b);
   image(dvdImage, x, y, width, height);
   
   //Updates x
@@ -91,11 +104,14 @@ function draw() {
   //Updates y
   if((y>=yCan-height && yVel>0) || (y<=0 && yVel<0)){
     yVel=-yVel;
-    // tint(random(255), random(255), random(255));
-  }y+=(yVel*.5+yVel*y*.0098);
+    r = random(255);
+    g = random(255);
+    b = random(255);  
+  }y+=(yVel*.5+yVel*y*.01);
 
   
   // Draw the 2nd logo at the new position.
+  tint(r1,g1,b1);
   image(dvdImage1, x1, y1, width, height);
   
   //Updates x
@@ -106,6 +122,26 @@ function draw() {
   //Updates y
   if((y1>=yCan-height && yVel1>0) || (y1<=0 && yVel1<0)){
     yVel1=-yVel1;
-    // tint(random(255), random(255), random(255));
-  }y1+=(yVel1*.5+yVel1*y1*.0098);
+    r1 = random(255);
+    g1 = random(255);
+    b1 = random(255);
+  }y1+=(yVel1*.5+yVel1*y1*.01);
+  
+  
+//   // Draw the 3rd logo at the new position.
+//   stroke(r1,g1,b1);
+//   //ellipse(x2, y2, width, width);
+  
+//   //Updates x
+//   if(x2>=xCan-width || x2<=0){
+//     xVel2=-xVel2;
+//   }x2+=xVel2;
+  
+//   //Updates y
+//   if((y2>=yCan-height && yVel2>0) || (y2<=0 && yVel2<0)){
+//     yVel1=-yVel1;
+//     r2 = random(255);
+//     g2 = random(255);
+//     b2 = random(255);
+//   }y2+=(yVel2*.5+yVel2*y2*.01);
 }
