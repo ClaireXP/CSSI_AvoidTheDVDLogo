@@ -35,7 +35,7 @@
 
 let dvdImage;
 let dvdImage1;
-// let cat;
+// let CAT_PIX;
 // let cats;
 
 //Variables that can be altered
@@ -57,49 +57,49 @@ let yVel1;
 let width = scale*20;
 let height = scale*15;
 
-var r = random(255);
-var g = random(255);
-var b = random(255);
-var r1 = random(255);
-var g1 = random(255);
-var b1 = random(255);
+let r = random(255);
+let g = random(255);
+let b = random(255);
+let r1 = random(255);
+let g1 = random(255);
+let b1 = random(255);
 
-let l = [-8,-6,-5,-3,3,5,6,8];
+let list = [-8,-6,-5,-3,3,5,6,8];
 
-function setup() {
+function setup(){
   // Code here runs only once
 
   createCanvas(xCan, yCan);
   // We only want to load the logo once.
   dvdImage = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
   dvdImage1 = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
-  //cat = loadImage("https://www.wbcats.org/wp-content/uploads/2018/01/kittencover2-1.png");
+  //CAT_PIX = loadImage("https://www.wbcats.org/wp-content/uploads/2018/01/kittencover2-1.png");
   
   x = random(xCan-width);
   y = random(yCan-height);
   x1 = random(xCan-width);
   y1 = random(yCan-height);
-  yVel = random(l);
-  yVel1 = random(l*1.2);
-  xVel = random(l);
-  xVel1 = random(l*1.2);
+  yVel = random(list);
+  yVel1 = random(list*1.2);
+  xVel = random(list);
+  xVel1 = random(list*1.2);
   
   
   // //Object-oriented attempt
   // cats = [];
   // for(let i=0; i<count; i++){
   //   cats.push({
-  //     xPos: random(xCan-width),
-  //     yPos: random(yCan-height),
-  //     xDelt: random(l),
-  //     yDelt: random(l),
+  //     xPos: random(xCan-scale*10),
+  //     yPos: random(yCan-scale*10),
+  //     xDelt: random(list),
+  //     yDelt: random(list),
   //     c: randCol(255,255,255),
   //   });
   // }
 }
 
 
-function draw() {
+function draw(){
   // Code here runs continuously
   background(220);
   
@@ -142,7 +142,7 @@ function draw() {
 //   //Object-Oriented Spawning
 //   for(const cat of cats){
 //     tint(cat.c);
-//     image(cat, cat.xPos, cat.yPos, scale*10, scale*10);
+//     image(CAT_PIX, cat.xPos, cat.yPos, scale*10, scale*10);
 
 //     //Updates x
 //     if(cat.xPos>=xCan-scale*10 || cat.xPos<=0){
