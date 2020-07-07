@@ -30,18 +30,19 @@
  *    background,
  *    createCanvas,
  *    image,
- *    loadImage, random, tint, ellipse
+ *    loadImage, random, tint, color
  */
 
 let dvdImage;
 let dvdImage1;
-let cat;
+// let cat;
+// let cats;
 
 //Variables that can be altered
 let scale = 5;
 let xCan = 600;
 let yCan = 600;
-let rad = 50;
+// let count = 3;
 
 let x;
 let y;
@@ -53,15 +54,9 @@ let y1;
 let xVel1;
 let yVel1;
 
-let x2;
-let y2;
-// let xVel1;
-// let yVel1;
-
 let width = scale*20;
 let height = scale*15;
 
-let count = 3;
 var r = random(255);
 var g = random(255);
 var b = random(255);
@@ -78,25 +73,29 @@ function setup() {
   // We only want to load the logo once.
   dvdImage = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
   dvdImage1 = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
+  //cat = loadImage("https://www.wbcats.org/wp-content/uploads/2018/01/kittencover2-1.png");
+  
   x = random(xCan-width);
   y = random(yCan-height);
   x1 = random(xCan-width);
   y1 = random(yCan-height);
   yVel = random(l);
-  yVel1 = random(l*);
+  yVel1 = random(l*1.2);
   xVel = random(l);
-  xVel1 = random(l);
+  xVel1 = random(l*1.2);
   
-  //Object-oriented attempt
-  for (let i = 0; i < LOGO_COUNT; i++) {
-    logos.push({
-      x2: round(random(0, SCREEN_WIDTH - LOGO_SIZE)),
-      y2: round(random(0, SCREEN_HEIGHT - LOGO_SIZE)),
-      xDelta: random([-8,-6,-5,-3,3,5,6,8]),
-      yDelta: random([-8,-6,-5,-3,3,5,6,8]),
-      color: randomColor(),
-    })
-  }
+  
+  // //Object-oriented attempt
+  // cats = [];
+  // for(let i=0; i<count; i++){
+  //   cats.push({
+  //     xPos: random(xCan-width),
+  //     yPos: random(yCan-height),
+  //     xDelt: random(l),
+  //     yDelt: random(l),
+  //     c: randCol(255,255,255),
+  //   });
+  // }
 }
 
 
@@ -140,20 +139,24 @@ function draw() {
   }y1+=(yVel1*.5+yVel1*y1*.01);
   
   
-//   // Draw the 3rd logo at the new position.
-//   stroke(r1,g1,b1);
-//   //ellipse(x2, y2, rad, rad);
-  
-//   //Updates x
-//   if(x2>=xCan-width || x2<=0){
-//     xVel2=-xVel2;
-//   }x2+=xVel2;
-  
-//   //Updates y
-//   if((y2>=yCan-height && yVel2>0) || (y2<=0 && yVel2<0)){
-//     yVel1=-yVel1;
-//     r2 = random(255);
-//     g2 = random(255);
-//     b2 = random(255);
-//   }y2+=(yVel2*.5+yVel2*y2*.01);
+//   //Object-Oriented Spawning
+//   for(const cat of cats){
+//     tint(cat.c);
+//     image(cat, cat.xPos, cat.yPos, scale*10, scale*10);
+
+//     //Updates x
+//     if(cat.xPos>=xCan-scale*10 || cat.xPos<=0){
+//       cat.xDelt=-cat.xDelt;
+//     }cat.xPos+=cat.xDelt;
+
+//     //Updates y
+//     if((cat.yPos>=yCan-scale*10 && cat.yDelt>0) || (cat.yPos<=0 && cat.yDelt<0)){
+//       cat.yDelt=-cat.yDelt;
+//       cat.c = randCol();
+//     }cat.yPos+=(cat.yDelt*.5+cat.yDelt*cat.yPos*.01);
+//   }
 }
+
+// function randCol(red,green,blue) {
+//   return color(random(red), random(green), random(blue));
+// }
