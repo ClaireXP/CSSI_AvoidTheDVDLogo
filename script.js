@@ -5,8 +5,9 @@
   \____|  \___/  /_/   \_\ |_____| |____/ 
                                                
 1) Make the DVD logo move
-- 
-
+2) Make it bounce
+3) Make it move diagonally
+4) 
 */
 
 
