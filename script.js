@@ -15,9 +15,9 @@
   ___) |   | |   |  _ <  | |___    | |   | |___  |  _  |
  |____/    |_|   |_| \_\ |_____|   |_|    \____| |_| |_|
 
-4) Change colors on bounce
-5) Multiple logos
-6) At different speeds
+4) Multiple logos
+5) At different speeds
+6) Change colors on bounce
 7) Random colors and speeds!
 
 */
