@@ -69,6 +69,7 @@ var r1 = random(255);
 var g1 = random(255);
 var b1 = random(255);
 
+let l = [-8,-6,-5,-3,3,5,6,8];
 
 function setup() {
   // Code here runs only once
@@ -81,12 +82,21 @@ function setup() {
   y = random(yCan-height);
   x1 = random(xCan-width);
   y1 = random(yCan-height);
-  yVel = random([-8,-5,-3,3,5,8]);
-  yVel1 = random([-8,-5,-3,3,5,8]);
-  // yVel2 = random([-5,-4,-1,1,4,5]);
-  xVel = random([-9,-6,-2,2,6,9]);
-  xVel1 = random([-8,-5,-3,3,5,8]);
-  // xVel2 = random([-5,-4,-1,1,4,5]);
+  yVel = random(l);
+  yVel1 = random(l*);
+  xVel = random(l);
+  xVel1 = random(l);
+  
+  //Object-oriented attempt
+  for (let i = 0; i < LOGO_COUNT; i++) {
+    logos.push({
+      x2: round(random(0, SCREEN_WIDTH - LOGO_SIZE)),
+      y2: round(random(0, SCREEN_HEIGHT - LOGO_SIZE)),
+      xDelta: random([-8,-6,-5,-3,3,5,6,8]),
+      yDelta: random([-8,-6,-5,-3,3,5,6,8]),
+      color: randomColor(),
+    })
+  }
 }
 
 
