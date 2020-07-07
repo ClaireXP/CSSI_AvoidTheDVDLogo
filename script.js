@@ -76,9 +76,9 @@ function setup(){
   x1 = random(xCan-width);
   y1 = random(yCan-height);
   yVel = random(l);
-  yVel1 = random(l*1.2);
+  yVel1 = random(l);
   xVel = random(l);
-  xVel1 = random(l*1.2);
+  xVel1 = random(l);
   
   
   //Object-oriented attempt
