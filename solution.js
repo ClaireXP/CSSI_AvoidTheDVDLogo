@@ -1,4 +1,4 @@
-// Content behind double slashes is a comment.
+// Scroll down to see a sample solution.
 
 
 
