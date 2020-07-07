@@ -34,6 +34,10 @@
  */
 
 let dvdImage;
+let dvdImage2;
+let dvdImage3;
+let dvdImage4;
+let dvdImage5;
 
 //Variables that can be altered
 let scale = 5;
@@ -45,12 +49,12 @@ let y;
 
 let xVel = 2;
 let yVel = 3;
-let yAcc = y*.1;
+let yAcc = y*-9.8;
 
 let width = scale*20;
 let height = scale*15;
 
-
+let count = 3;
 
 
 function setup() {
