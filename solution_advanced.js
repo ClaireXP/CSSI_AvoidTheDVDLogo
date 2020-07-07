@@ -1,4 +1,5 @@
-// Content behind double slashes is a comment.
+// Scroll down to see an advanced solution, containing
+// some Javascript concepts not covered in class.
 
 
 
@@ -8,7 +9,6 @@
 
 
 
-// Scroll down to see a sample solution.
 
 
 

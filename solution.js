@@ -8,7 +8,7 @@
 
 
 
-// Scroll down to see a sample solution.
+
 
 
 
