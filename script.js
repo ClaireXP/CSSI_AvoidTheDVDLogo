@@ -38,20 +38,18 @@ let dvdImage1;
 
 //Variables that can be altered
 let scale = 5;
-let xCan = 800;
-let yCan = 400;
+let xCan = 600;
+let yCan = 600;
 
 let x;
 let y;
-let xVel = 4;
+let xVel = random(-3,3);
 let yVel = -4;
-let accel = 0;
 
 let x1;
 let y1;
 let xVel1 = 2;
 let yVel1 = 3;
-let accel1 = 0;
 
 let width = scale*20;
 let height = scale*15;
@@ -81,12 +79,12 @@ function draw() {
   image(dvdImage, x, y, width, height);
   
   //Updates x
-  if(x>=xCan-width && xVel>0|| x<=0){
+  if(x>=xCan-width || x<=0){
     xVel=-xVel;
   }x+=xVel;
     
   //Updates y
-  if(y>=yCan-height || y<=0){
+  if((y>=yCan-height && yVel>0) || (y<=0 && yVel<0)){
     yVel=-yVel;
     // tint(random(255), random(255), random(255));
   }
@@ -107,7 +105,7 @@ function draw() {
   }x1+=xVel1;
   
   //Updates y
-  if(y1>=yCan-height || y1<=0){
+  if((y1>=yCan-height && yVel1>0) || (y1<=0 && yVel1<0)){
     yVel1=-yVel1;
     // tint(random(255), random(255), random(255));
   }
