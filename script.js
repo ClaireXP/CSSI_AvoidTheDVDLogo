@@ -37,6 +37,8 @@ let dvdImage;
 var x;
 var y;
 var scale = .1;
+var xVel = 1;
+var yVel = 1;
 
 function setup() {
   // Code here runs only once
@@ -55,8 +57,17 @@ function draw() {
   // Draw the logo at the new position.
   image(dvdImage, x, y, 200, 150);
   
-  //Spawn new x position
-  if(dvdImage.x>=600){
-    
-  x+=1;
+  //Updates x
+  if(x>=600){
+    xVel=-1;
+  }if(x<=0){
+    xVel=1;
+  }x+=xVel;
+  
+  //Updates y
+  if(y>=600){
+    yVel=-1;
+  }if(y<=0){
+    yVel=1;
+  }y+=yVel;
 }
