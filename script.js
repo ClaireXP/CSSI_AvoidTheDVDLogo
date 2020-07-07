@@ -30,7 +30,7 @@
  *    background,
  *    createCanvas,
  *    image,
- *    loadImage, random
+ *    loadImage, random, tint
  */
 
 let dvdImage;
@@ -43,12 +43,14 @@ let yCan = 775;
 let x;
 let y;
 
-let xVel = 1;
-let yVel = 1;
-let yAcc = 1;
+let xVel = 2;
+let yVel = 3;
+let yAcc = y*.1;
 
 let width = scale*20;
 let height = scale*15;
+
+
 
 
 function setup() {
@@ -70,20 +72,17 @@ function draw() {
   image(dvdImage, x, y, width, height);
   
   //Updates x
-  if(x>=xCan-width){
-    xVel=-1;
-  }if(x<=0){
-    xVel=1;
+  if(x>=xCan-width || x<=0){
+    xVel=-xVel;
+    tint(random(255), random(255), random(255));
   }x+=xVel;
   
   //Updates yAcc
-  yAcc = 9.8*(y-yCan);
+  yAcc = 9.8*(y);
   
   //Updates y
-  if(y>=yCan-height){
-    yVel=-1;
+  if(y>=yCan-height || y<=0){
+    yVel=-yVel;
     tint(random(255), random(255), random(255));
-  }if(y<=0){
-    yVel=1;
   }y+=yVel;
 }
