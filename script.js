@@ -38,18 +38,20 @@ let dvdImage1;
 
 //Variables that can be altered
 let scale = 5;
-let xCan = 500;
-let yCan = 775;
+let xCan = 800;
+let yCan = 400;
 
 let x;
 let y;
 let xVel = 4;
-let yVel = 4;
+let yVel = -4;
+let accel = 0;
 
 let x1;
 let y1;
 let xVel1 = 2;
 let yVel1 = 3;
+let accel1 = 0;
 
 let width = scale*20;
 let height = scale*15;
@@ -79,16 +81,21 @@ function draw() {
   image(dvdImage, x, y, width, height);
   
   //Updates x
-  if(x>=xCan-width || x<=0){
+  if(x>=xCan-width && xVel>0|| x<=0){
     xVel=-xVel;
-    tint(random(255), random(255), random(255));
   }x+=xVel;
     
   //Updates y
   if(y>=yCan-height || y<=0){
     yVel=-yVel;
-    tint(random(255), random(255), random(255));
-  }y+=yVel;
+    // tint(random(255), random(255), random(255));
+  }
+  
+  if(yVel1>0){
+    y+=yVel+yVel*y*.00098;
+  }else{
+    y+=yVel-yVel*y*.00098;
+  }
   
   
   // Draw the 2nd logo at the new position.
@@ -97,12 +104,17 @@ function draw() {
   //Updates x
   if(x1>=xCan-width || x1<=0){
     xVel1=-xVel1;
-    tint(random(255), random(255), random(255));
   }x1+=xVel1;
   
   //Updates y
   if(y1>=yCan-height || y1<=0){
     yVel1=-yVel1;
-    tint(random(255), random(255), random(255));
-  }y1+=yVel1;
+    // tint(random(255), random(255), random(255));
+  }
+  
+  if(yVel1>0){
+    y1+=yVel1+yVel1*y1*.00098;
+  }else{
+    y1+=yVel1-yVel1*y1*.00098;
+  }
 }
