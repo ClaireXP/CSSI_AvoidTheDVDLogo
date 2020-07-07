@@ -34,10 +34,7 @@
  */
 
 let dvdImage;
-let dvdImage2;
-let dvdImage3;
-let dvdImage4;
-let dvdImage5;
+let dvdImage1;
 
 //Variables that can be altered
 let scale = 5;
@@ -46,10 +43,13 @@ let yCan = 775;
 
 let x;
 let y;
+let xVel = 4;
+let yVel = 4;
 
-let xVel = 2;
-let yVel = 3;
-let yAcc = y*-9.8;
+let x1;
+let y1;
+let xVel1 = 2;
+let yVel1 = 3;
 
 let width = scale*20;
 let height = scale*15;
@@ -63,8 +63,11 @@ function setup() {
   createCanvas(xCan, yCan);
   // We only want to load the logo once.
   dvdImage = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
+  dvdImage1 = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
   x = random(xCan-width);
   y = random(yCan-height);
+  x1 = random(xCan-width);
+  y1 = random(yCan-height);
 }
 
 
@@ -80,13 +83,26 @@ function draw() {
     xVel=-xVel;
     tint(random(255), random(255), random(255));
   }x+=xVel;
-  
-  //Updates yAcc
-  yAcc = 9.8*(y);
-  
+    
   //Updates y
   if(y>=yCan-height || y<=0){
     yVel=-yVel;
     tint(random(255), random(255), random(255));
   }y+=yVel;
+  
+  
+  // Draw the 2nd logo at the new position.
+  image(dvdImage1, x1, y1, width, height);
+  
+  //Updates x
+  if(x1>=xCan-width || x1<=0){
+    xVel1=-xVel1;
+    tint(random(255), random(255), random(255));
+  }x1+=xVel1;
+  
+  //Updates y
+  if(y1>=yCan-height || y1<=0){
+    yVel1=-yVel1;
+    tint(random(255), random(255), random(255));
+  }y1+=yVel1;
 }
