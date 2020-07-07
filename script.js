@@ -30,16 +30,18 @@
  *    background,
  *    createCanvas,
  *    image,
- *    loadImage, random, tint
+ *    loadImage, random, tint, ellipse
  */
 
 let dvdImage;
 let dvdImage1;
+let cat;
 
 //Variables that can be altered
 let scale = 5;
 let xCan = 600;
 let yCan = 600;
+let rad = 50;
 
 let x;
 let y;
@@ -130,7 +132,7 @@ function draw() {
   
 //   // Draw the 3rd logo at the new position.
 //   stroke(r1,g1,b1);
-//   //ellipse(x2, y2, width, width);
+//   //ellipse(x2, y2, rad, rad);
   
 //   //Updates x
 //   if(x2>=xCan-width || x2<=0){
