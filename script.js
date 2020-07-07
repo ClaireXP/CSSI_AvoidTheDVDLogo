@@ -35,18 +35,21 @@
 
 let dvdImage;
 
-const scale = 5;
-const width = scale*20;
-const height = scale*15;
+//Variables that can be altered
+let scale = 5;
+let xCan = 500;
+let yCan = 775;
 
-var xCan = 400;
-var yCan = 300;
+let x;
+let y;
 
-var x;
-var y;
+let xVel = 1;
+let yVel = 1;
+let yAcc = 9.8;
 
-var xVel = 1;
-var yVel = 1;
+let width = scale*20;
+let height = scale*15;
+
 
 function setup() {
   // Code here runs only once
@@ -54,14 +57,15 @@ function setup() {
   createCanvas(xCan, yCan);
   // We only want to load the logo once.
   dvdImage = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
-  x = random(100);
-  y = random(100);
+  x = random(xCan-width);
+  y = random(yCan-height);
 }
+
 
 function draw() {
   // Code here runs continuously
-  
   background(220);
+  
   // Draw the logo at the new position.
   image(dvdImage, x, y, width, height);
   
@@ -72,10 +76,13 @@ function draw() {
     xVel=1;
   }x+=xVel;
   
+  //Updates yAcc
+  yAcc = 9.8*(y-yCan);
+  
   //Updates y
   if(y>=yCan-height){
     yVel=-1;
   }if(y<=0){
     yVel=1;
-  }y+=yVel;
+  }y+=yVel*yAcc;
 }
