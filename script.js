@@ -2,11 +2,12 @@
  *    background,
  *    createCanvas,
  *    image,
- *    loadImage, random, tint, color
+ *    loadImage, random, tint, color, append, ellipse
  */
 
 let DVD;
 let dvds;
+let p1
 
 //Variables that can be altered
 let scale = 5;
@@ -19,7 +20,12 @@ let difficulty = 7;
 let width = scale*20;
 let height = scale*15;
 
-let l = [1];
+let l = [];
+
+for(let i=difficulty; i>0; i--){
+  l.push(i);
+  l.push(-i);
+}
 
 function setup(){
   // Code here runs only once
@@ -39,6 +45,12 @@ function setup(){
       c: randCol(255,255,255),
     });
   }
+  
+  player.push({
+    x,
+    y,
+    
+  });
 }
 
 
@@ -57,7 +69,7 @@ function draw(){
     if((d.y>=yCan-height && d.yDelt>0) || (d.y<=0 && d.yDelt<0)){
       d.yDelt=-d.yDelt;
       d.c = randCol(255,255,255);
-    }d.y+=(d.yDelt*.5+d.yDelt*d.y*.015);
+    }d.y+=(d.yDelt*.5+d.yDelt*d.y*.016);
     
     tint(d.c);
     image(DVD, d.x, d.y, width, height);
