@@ -14,9 +14,9 @@ let ready = false;
 
 //Variables that can be altered
 let scale = 5;
-let xCan = 800;
+let xCan = 900;
 let yCan = 450;
-let count = 4;
+let count = 5;
 let maxSpd = 5; //Minimum speed is 3
 let pSpeed = 2;
 let pCount = 1;
