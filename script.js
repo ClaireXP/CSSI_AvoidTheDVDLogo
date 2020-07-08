@@ -4,7 +4,7 @@
  *    image,
  *    loadImage, 
  *    random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW, colorMode, HSB, fill, noLoop, keyIsPressed, text, textSize
- *    
+ *    keyCode
  */
 
 let DVD;
@@ -14,10 +14,10 @@ let ready = false;
 
 //Variables that can be altered
 let scale = 5;
-let xCan = 600;
-let yCan = 600;
-let count = 3;
-let maxSpd = 4; //Minimum speed is 2
+let xCan = 800;
+let yCan = 450;
+let count = 4;
+let maxSpd = 5; //Minimum speed is 3
 let pSpeed = 2;
 let pCount = 1;
 
@@ -28,7 +28,7 @@ let height = scale*15;
 
 let l = [];
 
-for(let i=maxSpd; i>maxSpd-2; i--){
+for(let i=maxSpd; i>maxSpd-3; i-=.5){
   l.push(i);
   l.push(-i);
 }
@@ -70,7 +70,6 @@ function draw(){
         //Checks for collision
         if(p.y<d.y+height){
           if((d.x<p.x && d.x+width>p.x) || (d.x<p.x+pWidth && d.x+width>p.x+pWidth)){
-            noLoop();
             ready = false;
           }
         }
@@ -104,7 +103,7 @@ function draw(){
 function wait(){
   text("Press any key to start",(xCan-250)/2,(yCan-20)/2);
   
-  if(keyIsPressed==true){
+  if(keyIsPressed==true && !(keyCode==LEFT_ARROW || keyCode==RIGHT_ARROW)){
     ready=true;
     reset();
   }
@@ -115,7 +114,7 @@ function reset(){
   for(let i=0; i<count; i++){
     dvds.push({
       x: random(xCan-width),
-      y: random(yCan/4-height),
+      y: random(yCan/3-height),
       xDelt: random(l),
       yDelt: random(l),
       c: randCol(360,100,100),
