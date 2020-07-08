@@ -38,7 +38,7 @@ let height = scale*15;
 let l = [];
 let maxSpd = Math.round(scale*1.25);
 
-for(let i=maxSpd; i>maxSpd-3; i-=.5){
+for(let i=maxSpd; i>maxSpd-2; i-=.5){
   l.push(i);
   l.push(-i);
 }
