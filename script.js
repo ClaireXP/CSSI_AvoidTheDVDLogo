@@ -2,7 +2,9 @@
  *    background,
  *    createCanvas,
  *    image,
- *    loadImage, random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW, colorMode, HSB, fill, noLoop,
+ *    loadImage, 
+ *    random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW, colorMode, HSB, fill, noLoop, keyIsPressed, text, textSize
+ *    
  */
 
 let DVD;
@@ -15,7 +17,7 @@ let scale = 5;
 let xCan = 600;
 let yCan = 600;
 let count = 3;
-let maxSpd = 5; //Minimum speed is 2
+let maxSpd = 4; //Minimum speed is 2
 let pSpeed = 2;
 let pCount = 1;
 
@@ -38,36 +40,17 @@ function setup(){
   // We only want to load the logo once.
   DVD = loadImage("https://cdn.glitch.com/eaea72a4-ac6d-4777-b76e-f37d75959aa5%2Fdvd.jpeg?1515761833387");
   
-  //Object-oriented setup
-  dvds = [];
-  for(let i=0; i<count; i++){
-    dvds.push({
-      x: random(xCan-width),
-      y: random(yCan/4-height),
-      xDelt: random(l),
-      yDelt: random(l),
-      c: randCol(360,100,100),
-    });
-  }
-  
-  players = [];
-  for(let i=0; i<pCount; i++){
-    players.push({
-      x: (xCan-pWidth)/2,
-      y: yCan-pWidth-1,
-      speed: pSpeed*10,
-    });
-  }
-  
   colorMode(HSB);
   fill(175,40,80);
+  
+  textSize(30);
 }
 
 
 function draw(){
+  background(175, 5, 90);
+  
   if(ready==true){
-    background(175, 5, 90);
-
     //Updates player position
     for(const p of players){
       if(keyIsDown(LEFT_ARROW) && p.x>5){
@@ -88,6 +71,7 @@ function draw(){
         if(p.y<d.y+height){
           if((d.x<p.x && d.x+width>p.x) || (d.x<p.x+pWidth && d.x+width>p.x+pWidth)){
             noLoop();
+            ready = false;
           }
         }
       }
@@ -118,5 +102,32 @@ function draw(){
   }
 
 function wait(){
+  text("Press any key to start",(xCan-250)/2,(yCan-20)/2);
   
+  if(keyIsPressed==true){
+    ready=true;
+    reset();
+  }
+}
+
+function reset(){
+  dvds = [];
+  for(let i=0; i<count; i++){
+    dvds.push({
+      x: random(xCan-width),
+      y: random(yCan/4-height),
+      xDelt: random(l),
+      yDelt: random(l),
+      c: randCol(360,100,100),
+    });
+  }
+  
+  players = [];
+  for(let i=0; i<pCount; i++){
+    players.push({
+      x: (xCan-pWidth)/2,
+      y: yCan-pWidth-1,
+      speed: pSpeed*10,
+    });
+  }
 }
