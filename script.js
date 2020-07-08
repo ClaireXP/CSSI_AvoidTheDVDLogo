@@ -2,7 +2,7 @@
  *    background,
  *    createCanvas,
  *    image,
- *    loadImage, random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW
+ *    loadImage, random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW, colorMode, HSB, fill
  */
 
 let DVD;
@@ -45,7 +45,7 @@ function setup(){
       y: random(yCan-height),
       xDelt: random(l),
       yDelt: random(l),
-      c: randCol(255,255,255),
+      c: randCol(360,100,100),
     });
   }
   
@@ -57,19 +57,22 @@ function setup(){
       speed: pSpeed*10,
     });
   }
+  
+ colorMode(HSB);
 }
 
 
 function draw(){
   // Code here runs continuously
-  background(220);
+  background(245, 10, 90);
   
   for(const p of players){
     if(keyIsDown(LEFT_ARROW) && p.x>5){
       p.x-=pSpeed*5;
-    }if(keyIsDown(RIGHT_ARROW)){
+    }if(keyIsDown(RIGHT_ARROW) && p.x<xCan-pWidth-5){
       p.x+=pSpeed*5;
     }
+    fill(175,40,80);
     rect(p.x, p.y, pWidth, pWidth);
   }
   
@@ -93,6 +96,6 @@ function draw(){
   }
 }
 
-function randCol(red,green,blue) {
-  return color(random(red), random(green), random(blue));
+function randCol(h,s,b) {
+  return color(random(h), random(s), random(b));
 }
