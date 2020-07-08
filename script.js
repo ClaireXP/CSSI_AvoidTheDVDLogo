@@ -13,11 +13,10 @@ let players;
 let ready = false;
 
 //Variables that can be altered
-let scale = 5;
 let xCan = window.innerWidth-15;
-let yCan = window.innerHeight-15;
+let yCan = window.innerHeight-20;
 let count = 1 + Math.round(xCan/160);
-let maxSpd = 4 + Math.round(yCan/500);
+let maxSpd = 4 + Math.round(yCan/350);
 let maxLives = 3;
 
 let lives = maxLives;
@@ -25,6 +24,14 @@ let score = 0;
 
 let pSpeed = 2;
 let pCount = 1;
+
+let scale;
+
+if(yCan>xCan){
+  scale = xCan/125;
+}else{
+  scale = yCan/150;
+}
 
 let pWidth = scale*8;
 let width = scale*20;
@@ -90,7 +97,7 @@ function draw(){
     text("Score: " +score, 15,yCan/20);
     noLoop();
   }else{
-    textSize(yCan/40);
+    textSize(5+yCan/40);
     text("Lives: " +lives, 15,30);
     text("Score: " +score, yCan/6.5,30);
   }
@@ -121,7 +128,7 @@ function wait(){
   if(lives==maxLives){
     text("Press any key or click to start",(xCan-(yCan/2.51))/2,(yCan-20)/2);
   }else{
-    text("Press any key to continue",(xCan-(yCan/2.51))/2,(yCan-20)/2);
+    text("Press any key or click to continue",(xCan-(yCan/2.53))/2,(yCan-20)/2);
   }
   
   if((keyIsPressed && !(keyCode==LEFT_ARROW || keyCode==RIGHT_ARROW) || mouseIsPressed) && ready==false){
