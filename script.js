@@ -2,7 +2,7 @@
  *    background,
  *    createCanvas,
  *    image,
- *    loadImage, random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW, colorMode, HSB, fill
+ *    loadImage, random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW, colorMode, HSB, fill, noLoop
  */
 
 let DVD;
@@ -83,17 +83,17 @@ function draw(){
       image(DVD, d.x, d.y, width, height);
       
       //Checks for collision
-      checkColl(p,pWidth,pWithd,d,width,height);
+      if(p.y<d.y){
+        if((d.x<p.x && d.x+width>p.x) || (d.x<p.x+pWidth && d.x+width>p.x+pWidth)){
+          noLoop();
+        }
+      }
     }
   }
 }
 
 function randCol(h,s,b) {
   return color(random(h), random(s), random(b));
-}
-
-function checkColl(o1,w1,h1,o2,w2,h2){
-  if(o)
 }
 
 function updateX(o){
