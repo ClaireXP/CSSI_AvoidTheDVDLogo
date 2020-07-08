@@ -58,7 +58,7 @@ function setup(){
     });
   }
   
- colorMode(HSB);
+  colorMode(HSB);
 }
 
 
@@ -66,6 +66,7 @@ function draw(){
   // Code here runs continuously
   background(245, 10, 90);
   
+  //Updates player position
   for(const p of players){
     if(keyIsDown(LEFT_ARROW) && p.x>5){
       p.x-=pSpeed*5;
@@ -74,25 +75,28 @@ function draw(){
     }
     fill(175,40,80);
     rect(p.x, p.y, pWidth, pWidth);
-  }
-  
-  //Object-Oriented Spawning
-  for(const d of dvds){
-    //Updates x
-    if(d.x>=xCan-width || d.x<=0){
-      d.xDelt=-d.xDelt;
-    }d.x+=d.xDelt;
-
-    //Updates y
-    if((d.y>=yCan-height && d.yDelt>0) || (d.y<=0 && d.yDelt<0)){
-      if(d.y>=yCan-height){
-        d.c = randCol(255,255,255);
-      }
-      d.yDelt=-d.yDelt;
-    }d.y+=(d.yDelt*.5+d.yDelt*d.y*.016);
     
-    tint(d.c);
-    image(DVD, d.x, d.y, width, height);
+    //Updates logo positions
+    for(const d of dvds){
+      //Updates x
+      if(d.x>=xCan-width || d.x<=0){
+        d.xDelt=-d.xDelt;
+      }d.x+=d.xDelt;
+
+      //Updates y with respects to current location --> Factors in "gravity"
+      if((d.y>=yCan-height && d.yDelt>0) || (d.y<=0 && d.yDelt<0)){
+        if(d.y>=yCan-height){
+          d.c = randCol(255,255,255);
+        }
+        d.yDelt=-d.yDelt;
+      }d.y+=(d.yDelt*.5+d.yDelt*d.y*.016);
+
+      tint(d.c);
+      image(DVD, d.x, d.y, width, height);
+      
+      //Checks for collision
+      collision();
+    }
   }
 }
 
