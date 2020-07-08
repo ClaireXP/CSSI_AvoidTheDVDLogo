@@ -4,7 +4,7 @@
  *    image,
  *    loadImage, 
  *    random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW, colorMode, HSB, fill, noLoop, keyIsPressed, text, textSize
- *    keyCode, windowWidth, windowHeight, round
+ *    keyCode, windowWidth, windowHeight, round, mouseX, mouseY, mouseIsPressed, mouseClicked
  */
 
 let DVD;
@@ -56,9 +56,9 @@ function draw(){
   if(ready==true){
     //Updates player position
     for(const p of players){
-      if((keyIsDown(LEFT_ARROW) || ) && p.x>5){
+      if((keyIsDown(LEFT_ARROW) || (mouseIsPressed && (mouseX<xCan/2))) && p.x>5){
         p.x-=pSpeed*5;
-      }if(keyIsDown(RIGHT_ARROW) && p.x<xCan-pWidth-5){
+      }if((keyIsDown(RIGHT_ARROW) || (mouseIsPressed && (mouseX>xCan/2))) && p.x<xCan-pWidth-5){
         p.x+=pSpeed*5;
       }rect(p.x, p.y, pWidth, pWidth);
 
@@ -121,10 +121,10 @@ function wait(){
   if(lives==maxLives){
     text("Press any key or click to start",(xCan-(yCan/2.51))/2,(yCan-20)/2);
   }else{
-    text("Press any key to continue",(xCan-290)/2,(yCan-20)/2);
+    text("Press any key to continue",(xCan-(yCan/2.51))/2,(yCan-20)/2);
   }
   
-  if(keyIsPressed==true && !(keyCode==LEFT_ARROW || keyCode==RIGHT_ARROW)){
+  if((keyIsPressed && !(keyCode==LEFT_ARROW || keyCode==RIGHT_ARROW) || mouseIsPressed) && ready==false){
     ready=true;
     reset();
   }
