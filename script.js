@@ -12,17 +12,15 @@ let dvds;
 let players;
 let ready = false;
 
-//Variables that can be altered
 let xCan = window.innerWidth-15;
 let yCan = window.innerHeight-20;
-let count = 1 + Math.round(xCan/160);
-let maxSpd = 4 + Math.round(yCan/350);
+let count = 1 + Math.round(xCan/150);
 let maxLives = 3;
 
 let lives = maxLives;
 let score = 0;
 
-let pSpeed = 2;
+let pSpeed = xCan/250;
 let pCount = 1;
 
 let scale;
@@ -38,6 +36,7 @@ let width = scale*20;
 let height = scale*15;
 
 let l = [];
+let maxSpd = 2 + Math.round(yCan/200);
 
 for(let i=maxSpd; i>maxSpd-3; i-=.5){
   l.push(i);
@@ -120,7 +119,7 @@ function draw(){
       if(o.y>=yCan-height){
         o.c = randCol(255,255,255);
       }o.yDelt=-o.yDelt;
-    }o.y+=(o.yDelt*.5+o.yDelt*o.y*.016);
+    }o.y+=(o.yDelt*.5+o.yDelt*o.y*.02);
   }
 
 function wait(){
