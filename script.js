@@ -2,27 +2,29 @@
  *    background,
  *    createCanvas,
  *    image,
- *    loadImage, random, tint, color, append, ellipse
+ *    loadImage, random, tint, color, append, rect
  */
 
 let DVD;
 let dvds;
-let p1
+let players;
 
 //Variables that can be altered
 let scale = 5;
 let xCan = 600;
 let yCan = 600;
 let count = 3;
-let difficulty = 7;
+let maxSpd = 6;
+let pSpeed = 1;
 
 
+let pWidth = 20;
 let width = scale*20;
 let height = scale*15;
 
 let l = [];
 
-for(let i=difficulty; i>0; i--){
+for(let i=maxSpd; i>maxSpd-3; i--){
   l.push(i);
   l.push(-i);
 }
@@ -46,10 +48,11 @@ function setup(){
     });
   }
   
-  player.push({
-    x,
-    y,
-    
+  
+  players.push({
+    x: (xCan-pWidth)/2,
+    y: yCan-pWidth,
+    speed: pSpeed*10,
   });
 }
 
@@ -57,6 +60,7 @@ function setup(){
 function draw(){
   // Code here runs continuously
   background(220);
+  // rect(player.x,player.y,pWidth,pWidth);
   
   //Object-Oriented Spawning
   for(const d of dvds){
@@ -67,8 +71,10 @@ function draw(){
 
     //Updates y
     if((d.y>=yCan-height && d.yDelt>0) || (d.y<=0 && d.yDelt<0)){
+      if(d.y>=yCan-height){
+        d.c = randCol(255,255,255);
+      }
       d.yDelt=-d.yDelt;
-      d.c = randCol(255,255,255);
     }d.y+=(d.yDelt*.5+d.yDelt*d.y*.016);
     
     tint(d.c);
