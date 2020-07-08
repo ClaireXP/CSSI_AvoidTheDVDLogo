@@ -75,10 +75,6 @@ function draw(){
           if((d.x<p.x && d.x+width>p.x) || (d.x<p.x+pWidth && d.x+width>p.x+pWidth)){
             ready = false;
             lives--;
-            
-            if(lives==0){
-              noLoop();
-            }
           }
         }
       }
@@ -87,9 +83,16 @@ function draw(){
     wait();
   }
   
-  textSize(xCan/30);
-  text("Lives: " +lives, 15,30);
-  text("Score: " +score, xCan-15-(xCan8),30);
+  if(lives==0){
+    textSize(40);
+    text("Game Over",(xCan-160)/2,(yCan-20)/2);
+    text("Score: " +score, 15,(yCan-20)/2);
+    noLoop();
+  }else{
+    textSize(xCan/30);
+    text("Lives: " +lives, 15,30);
+    text("Score: " +score, 115,30);
+  }
 }
 
   function randCol(h,s,b) {
@@ -117,7 +120,7 @@ function wait(){
   if(lives==maxLives){
     text("Press any key to start",(xCan-250)/2,(yCan-20)/2);
   }else{
-    text("Press any key to continue",(xCan-250)/2,(yCan-20)/2);
+    text("Press any key to continue",(xCan-290)/2,(yCan-20)/2);
   }
   
   if(keyIsPressed==true && !(keyCode==LEFT_ARROW || keyCode==RIGHT_ARROW)){
