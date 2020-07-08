@@ -16,11 +16,11 @@ let ready = false;
 let scale = 5;
 let xCan = window.innerWidth-30;
 let yCan = window.innerHeight-50;
-let count = round(xCan/100);
-let maxSpd = round(yCan/75); //Minimum speed is 3
+let count = 1 + Math.round(xCan/160);
+let maxSpd = 4 + Math.round(yCan/500);
+
 let pSpeed = 2;
 let pCount = 1;
-
 
 let pWidth = scale*8;
 let width = scale*20;
