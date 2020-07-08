@@ -18,6 +18,10 @@ let xCan = window.innerWidth-30;
 let yCan = window.innerHeight-50;
 let count = 1 + Math.round(xCan/160);
 let maxSpd = 4 + Math.round(yCan/500);
+let maxLives = 3;
+
+let lives = maxLives;
+let score = 0;
 
 let pSpeed = 2;
 let pCount = 1;
@@ -42,13 +46,12 @@ function setup(){
   
   colorMode(HSB);
   fill(175,40,80);
-  
-  textSize(30);
 }
 
 
 function draw(){
   background(175, 5, 90);
+  
   
   if(ready==true){
     //Updates player position
@@ -71,13 +74,22 @@ function draw(){
         if(p.y<d.y+height){
           if((d.x<p.x && d.x+width>p.x) || (d.x<p.x+pWidth && d.x+width>p.x+pWidth)){
             ready = false;
+            lives--;
+            
+            if(lives==0){
+              noLoop();
+            }
           }
         }
       }
-    }
+    }score++;
   }else{
     wait();
   }
+  
+  textSize(xCan/30);
+  text("Lives: " +lives, 15,30);
+  text("Score: " +score, xCan-15-(xCan8),30);
 }
 
   function randCol(h,s,b) {
@@ -101,7 +113,12 @@ function draw(){
   }
 
 function wait(){
-  text("Press any key to start",(xCan-250)/2,(yCan-20)/2);
+  textSize(30);
+  if(lives==maxLives){
+    text("Press any key to start",(xCan-250)/2,(yCan-20)/2);
+  }else{
+    text("Press any key to continue",(xCan-250)/2,(yCan-20)/2);
+  }
   
   if(keyIsPressed==true && !(keyCode==LEFT_ARROW || keyCode==RIGHT_ARROW)){
     ready=true;
