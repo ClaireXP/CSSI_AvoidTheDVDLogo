@@ -2,7 +2,7 @@
  *    background,
  *    createCanvas,
  *    image,
- *    loadImage, random, tint, color, append, rect
+ *    loadImage, random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW
  */
 
 let DVD;
@@ -15,10 +15,11 @@ let xCan = 600;
 let yCan = 600;
 let count = 3;
 let maxSpd = 6;
-let pSpeed = 1;
+let pSpeed = 2;
+let pCount = 1;
 
 
-let pWidth = 20;
+let pWidth = scale*10;
 let width = scale*20;
 let height = scale*15;
 
@@ -48,19 +49,29 @@ function setup(){
     });
   }
   
-  
-  players.push({
-    x: (xCan-pWidth)/2,
-    y: yCan-pWidth,
-    speed: pSpeed*10,
-  });
+  players = [];
+  for(let i=0; i<pCount; i++){
+    players.push({
+      x: (xCan-pWidth)/2,
+      y: yCan-pWidth-1,
+      speed: pSpeed*10,
+    });
+  }
 }
 
 
 function draw(){
   // Code here runs continuously
   background(220);
-  // rect(player.x,player.y,pWidth,pWidth);
+  
+  for(const p of players){
+    if(keyIsDown(LEFT_ARROW) && p.x>5){
+      p.x-=pSpeed*5;
+    }if(keyIsDown(RIGHT_ARROW)){
+      p.x+=pSpeed*5;
+    }
+    rect(p.x, p.y, pWidth, pWidth);
+  }
   
   //Object-Oriented Spawning
   for(const d of dvds){
