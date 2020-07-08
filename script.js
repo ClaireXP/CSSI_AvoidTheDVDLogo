@@ -4,7 +4,7 @@
  *    image,
  *    loadImage, 
  *    random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW, colorMode, HSB, fill, noLoop, keyIsPressed, text, textSize
- *    keyCode
+ *    keyCode, windowWidth, windowHeight, round
  */
 
 let DVD;
@@ -14,10 +14,10 @@ let ready = false;
 
 //Variables that can be altered
 let scale = 5;
-let xCan = 900;
-let yCan = 450;
-let count = 5;
-let maxSpd = 5; //Minimum speed is 3
+let xCan = window.innerWidth-30;
+let yCan = window.innerHeight-50;
+let count = round(xCan/100);
+let maxSpd = round(yCan/75); //Minimum speed is 3
 let pSpeed = 2;
 let pCount = 1;
 
