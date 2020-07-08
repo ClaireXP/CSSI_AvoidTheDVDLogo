@@ -14,18 +14,18 @@ let scale = 5;
 let xCan = 600;
 let yCan = 600;
 let count = 3;
-let maxSpd = 6;
+let maxSpd = 5; //Minimum speed is 2
 let pSpeed = 2;
 let pCount = 1;
 
 
-let pWidth = scale*10;
+let pWidth = scale*8;
 let width = scale*20;
 let height = scale*15;
 
 let l = [];
 
-for(let i=maxSpd; i>maxSpd-3; i--){
+for(let i=maxSpd; i>maxSpd-2; i--){
   l.push(i);
   l.push(-i);
 }
@@ -42,7 +42,7 @@ function setup(){
   for(let i=0; i<count; i++){
     dvds.push({
       x: random(xCan-width),
-      y: random(yCan-height),
+      y: random(yCan/4-height),
       xDelt: random(l),
       yDelt: random(l),
       c: randCol(360,100,100),
@@ -83,7 +83,7 @@ function draw(){
       image(DVD, d.x, d.y, width, height);
       
       //Checks for collision
-      if(p.y<d.y){
+      if(p.y<d.y+height){
         if((d.x<p.x && d.x+width>p.x) || (d.x<p.x+pWidth && d.x+width>p.x+pWidth)){
           noLoop();
         }
