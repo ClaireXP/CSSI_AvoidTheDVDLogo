@@ -36,7 +36,7 @@ let width = scale*20;
 let height = scale*15;
 
 let l = [];
-let maxSpd = 2 + Math.round(yCan/200);
+let maxSpd = Math.round(scale*1.25);
 
 for(let i=maxSpd; i>maxSpd-3; i-=.5){
   l.push(i);
@@ -126,8 +126,11 @@ function wait(){
   textSize(yCan/30);
   if(lives==maxLives){
     text("Press any key or click to start",(xCan-(yCan/2.51))/2,(yCan-20)/2);
+    textSize(yCan/32);
+    text("Use the left and right arrow keys",(xCan-(yCan/2.45))/2,(yCan)/2+yCan/15);
+    text("or press and hold the left and right sides",(xCan-(yCan/1.9))/2,(yCan)/2+yCan/10);
   }else{
-    text("Press any key or click to continue",(xCan-(yCan/2.53))/2,(yCan-20)/2);
+    text("Press any key or click to continue",(xCan-(yCan/2.2))/2,(yCan-20)/2);
   }
   
   if((keyIsPressed && !(keyCode==LEFT_ARROW || keyCode==RIGHT_ARROW) || mouseIsPressed) && ready==false){
@@ -141,7 +144,7 @@ function reset(){
   for(let i=0; i<count; i++){
     dvds.push({
       x: random(xCan-width),
-      y: random(yCan/3-height),
+      y: random(yCan/3.25-height),
       xDelt: random(l),
       yDelt: random(l),
       c: randCol(360,100,100),
