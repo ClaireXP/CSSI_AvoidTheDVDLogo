@@ -114,7 +114,7 @@ function draw(){
     r = random(255);
     g = random(255);
     b = random(255);  
-  }y+=(yVel*.5+yVel*y*.01);
+  }y+=(yVel*.5+yVel*y*.015);
 
   
   // Draw the 2nd logo at the new position.
@@ -132,7 +132,7 @@ function draw(){
     r1 = random(255);
     g1 = random(255);
     b1 = random(255);
-  }y1+=(yVel1*.5+yVel1*y1*.01);
+  }y1+=(yVel1*.5+yVel1*y1*.015);
   
   //Object-Oriented Spawning
   for(const cat of cats){
@@ -145,7 +145,7 @@ function draw(){
     if((cat.yPos>=yCan-scale*20 && cat.yDelt>0) || (cat.yPos<=0 && cat.yDelt<0)){
       cat.yDelt=-cat.yDelt;
       cat.c = randCol(255,255,255);
-    }cat.yPos+=(cat.yDelt*.5+cat.yDelt*cat.yPos*.01);
+    }cat.yPos+=(cat.yDelt*.5+cat.yDelt*cat.yPos*.015);
     
     tint(cat.c);
     image(CAT_PIX, cat.xPos, cat.yPos, scale*20, scale*20);
