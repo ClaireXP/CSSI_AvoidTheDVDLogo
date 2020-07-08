@@ -2,12 +2,13 @@
  *    background,
  *    createCanvas,
  *    image,
- *    loadImage, random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW, colorMode, HSB, fill, noLoop
+ *    loadImage, random, tint, color, append, rect, keyIsDown, LEFT_ARROW, RIGHT_ARROW, colorMode, HSB, fill, noLoop,
  */
 
 let DVD;
 let dvds;
 let players;
+let ready = false;
 
 //Variables that can be altered
 let scale = 5;
@@ -64,50 +65,58 @@ function setup(){
 
 
 function draw(){
-  background(175, 5, 90);
-  
-  //Updates player position
-  for(const p of players){
-    if(keyIsDown(LEFT_ARROW) && p.x>5){
-      p.x-=pSpeed*5;
-    }if(keyIsDown(RIGHT_ARROW) && p.x<xCan-pWidth-5){
-      p.x+=pSpeed*5;
-    }rect(p.x, p.y, pWidth, pWidth);
-    
-    //Updates logo positions
-    for(const d of dvds){
-      updateX(d);
-      updateY(d);
+  if(ready==true){
+    background(175, 5, 90);
 
-      tint(d.c);
-      image(DVD, d.x, d.y, width, height);
-      
-      //Checks for collision
-      if(p.y<d.y+height){
-        if((d.x<p.x && d.x+width>p.x) || (d.x<p.x+pWidth && d.x+width>p.x+pWidth)){
-          noLoop();
+    //Updates player position
+    for(const p of players){
+      if(keyIsDown(LEFT_ARROW) && p.x>5){
+        p.x-=pSpeed*5;
+      }if(keyIsDown(RIGHT_ARROW) && p.x<xCan-pWidth-5){
+        p.x+=pSpeed*5;
+      }rect(p.x, p.y, pWidth, pWidth);
+
+      //Updates logo positions
+      for(const d of dvds){
+        updateX(d);
+        updateY(d);
+
+        tint(d.c);
+        image(DVD, d.x, d.y, width, height);
+
+        //Checks for collision
+        if(p.y<d.y+height){
+          if((d.x<p.x && d.x+width>p.x) || (d.x<p.x+pWidth && d.x+width>p.x+pWidth)){
+            noLoop();
+          }
         }
       }
     }
+  }else{
+    wait();
   }
 }
 
-function randCol(h,s,b) {
-  return color(random(h), random(s), random(b));
-}
+  function randCol(h,s,b) {
+    return color(random(h), random(s), random(b));
+  }
 
-function updateX(o){
-  //Updates x
-  if(o.x>=xCan-width || o.x<=0){
-    o.xDelt=-o.xDelt;
-  }o.x+=o.xDelt;
-}
+  function updateX(o){
+    //Updates x
+    if(o.x>=xCan-width || o.x<=0){
+      o.xDelt=-o.xDelt;
+    }o.x+=o.xDelt;
+  }
 
-function updateY(o){
-  //Updates y with respects to current location --> Factors in "gravity"
-  if((o.y>=yCan-height && o.yDelt>0) || (o.y<=0 && o.yDelt<0)){
-    if(o.y>=yCan-height){
-      o.c = randCol(255,255,255);
-    }o.yDelt=-o.yDelt;
-  }o.y+=(o.yDelt*.5+o.yDelt*o.y*.016);
+  function updateY(o){
+    //Updates y with respects to current location --> Factors in "gravity"
+    if((o.y>=yCan-height && o.yDelt>0) || (o.y<=0 && o.yDelt<0)){
+      if(o.y>=yCan-height){
+        o.c = randCol(255,255,255);
+      }o.yDelt=-o.yDelt;
+    }o.y+=(o.yDelt*.5+o.yDelt*o.y*.016);
+  }
+
+function wait(){
+  
 }
