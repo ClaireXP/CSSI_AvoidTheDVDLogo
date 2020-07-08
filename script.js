@@ -59,12 +59,12 @@ function setup(){
   }
   
   colorMode(HSB);
+  fill(175,40,80);
 }
 
 
 function draw(){
-  // Code here runs continuously
-  background(245, 10, 90);
+  background(175, 5, 90);
   
   //Updates player position
   for(const p of players){
@@ -72,34 +72,42 @@ function draw(){
       p.x-=pSpeed*5;
     }if(keyIsDown(RIGHT_ARROW) && p.x<xCan-pWidth-5){
       p.x+=pSpeed*5;
-    }
-    fill(175,40,80);
-    rect(p.x, p.y, pWidth, pWidth);
+    }rect(p.x, p.y, pWidth, pWidth);
     
     //Updates logo positions
     for(const d of dvds){
-      //Updates x
-      if(d.x>=xCan-width || d.x<=0){
-        d.xDelt=-d.xDelt;
-      }d.x+=d.xDelt;
-
-      //Updates y with respects to current location --> Factors in "gravity"
-      if((d.y>=yCan-height && d.yDelt>0) || (d.y<=0 && d.yDelt<0)){
-        if(d.y>=yCan-height){
-          d.c = randCol(255,255,255);
-        }
-        d.yDelt=-d.yDelt;
-      }d.y+=(d.yDelt*.5+d.yDelt*d.y*.016);
+      updateX(d);
+      updateY(d);
 
       tint(d.c);
       image(DVD, d.x, d.y, width, height);
       
       //Checks for collision
-      collision();
+      checkColl(p,pWidth,pWithd,d,width,height);
     }
   }
 }
 
 function randCol(h,s,b) {
   return color(random(h), random(s), random(b));
+}
+
+function checkColl(o1,w1,h1,o2,w2,h2){
+  if(o)
+}
+
+function updateX(o){
+  //Updates x
+  if(o.x>=xCan-width || o.x<=0){
+    o.xDelt=-o.xDelt;
+  }o.x+=o.xDelt;
+}
+
+function updateY(o){
+  //Updates y with respects to current location --> Factors in "gravity"
+  if((o.y>=yCan-height && o.yDelt>0) || (o.y<=0 && o.yDelt<0)){
+    if(o.y>=yCan-height){
+      o.c = randCol(255,255,255);
+    }o.yDelt=-o.yDelt;
+  }o.y+=(o.yDelt*.5+o.yDelt*o.y*.016);
 }
