@@ -14,8 +14,8 @@ let ready = false;
 
 //Variables that can be altered
 let scale = 5;
-let xCan = window.innerWidth-30;
-let yCan = window.innerHeight-50;
+let xCan = window.innerWidth-15;
+let yCan = window.innerHeight-15;
 let count = 1 + Math.round(xCan/160);
 let maxSpd = 4 + Math.round(yCan/500);
 let maxLives = 3;
@@ -56,7 +56,7 @@ function draw(){
   if(ready==true){
     //Updates player position
     for(const p of players){
-      if(keyIsDown(LEFT_ARROW) && p.x>5){
+      if((keyIsDown(LEFT_ARROW) || ) && p.x>5){
         p.x-=pSpeed*5;
       }if(keyIsDown(RIGHT_ARROW) && p.x<xCan-pWidth-5){
         p.x+=pSpeed*5;
@@ -84,14 +84,15 @@ function draw(){
   }
   
   if(lives==0){
-    textSize(40);
+    textSize(yCan/20);
     text("Game Over",(xCan-160)/2,(yCan-20)/2);
-    text("Score: " +score, 15,(yCan-20)/2);
+    textSize(yCan/30);
+    text("Score: " +score, 15,yCan/20);
     noLoop();
   }else{
-    textSize(xCan/30);
+    textSize(yCan/40);
     text("Lives: " +lives, 15,30);
-    text("Score: " +score, 115,30);
+    text("Score: " +score, yCan/6.5,30);
   }
 }
 
@@ -116,9 +117,9 @@ function draw(){
   }
 
 function wait(){
-  textSize(30);
+  textSize(yCan/30);
   if(lives==maxLives){
-    text("Press any key to start",(xCan-250)/2,(yCan-20)/2);
+    text("Press any key or click to start",(xCan-(yCan/2.51))/2,(yCan-20)/2);
   }else{
     text("Press any key to continue",(xCan-290)/2,(yCan-20)/2);
   }
